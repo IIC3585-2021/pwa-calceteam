@@ -1,4 +1,4 @@
-const cacheName = 'Temporas';
+const cacheName = 'CalceTweet';
 
 // Cache all the files to make a PWA
 self.addEventListener('install', e => {
@@ -8,8 +8,12 @@ self.addEventListener('install', e => {
       // but you can add more such as style.css as your app grows
       return cache.addAll([
         './',
-        //'./index.html',
-        './manifest.json'
+        './index.html',
+        './login.html',
+        './posts.html',
+        './post.html',
+        './manifest.json',
+        '/user',
       ]);
     })
   );
@@ -19,6 +23,7 @@ self.addEventListener('install', e => {
 // and check if we have cached the file
 // if so it will serve the cached file
 self.addEventListener('fetch', event => {
+  console.log("AAAAA");
   event.respondWith(
     caches.open(cacheName)
       .then(cache => cache.match(event.request, { ignoreSearch: true }))
