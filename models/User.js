@@ -4,8 +4,8 @@ const users = [
 		id: 1,
 		name: 'Gonzalo',
 		user_name: 'chalo',
-		password: 'jakeado123',
-		aboutMe: 'el otro día fui al doctor',
+		password: 'asd123',
+		aboutMe: 'A los conejos les gusta el pan, pero no hay que darles mucho',
 	},
 ];
 

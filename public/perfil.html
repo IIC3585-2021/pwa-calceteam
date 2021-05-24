@@ -80,7 +80,7 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <section id="perfil"></section>
-          <p class="mt-4 h5"><strong>Últimos Tweets</strong></p>
+          <p class="mt-4 h5"><strong>Mis últimos Tweets</strong></p>
           <section id="posts"></section>
         </main>
       </div>
@@ -95,10 +95,10 @@
       (function () {
         'use strict'
 
-        const userId = 1;
-        
-        if(userId) {
-          getUser(userId).then(({data: user}) => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if(user.id) {
+          getUser(user.id).then(({data: user}) => {
             const userElement = document.getElementById('perfil');
             const userHTML = `
               <div class="row">
@@ -108,13 +108,10 @@
                 <div class="col-2 col-md-1 pt-1">\
                   <img src="/images/avatar.png" class="img-fluid rounded-circle">\
                 </div>\
-                <div class="col-6 col-md-6 mt-2">\
+                <div class="col-10 col-md-11 mt-2">\
                   <span class="h5"><strong>${user.name}</strong></span>\
                   <br>\
                   <span class="font-weight-lighter">@${user.user_name}</span>\
-                </div>\
-                <div class="col-4 col-md-5 mt-2 text-end">\
-                  <button type="button" class="btn btn-primary" onclick="follow()">Follow</button>\
                 </div>\
               </div>\
               <div class="row mt-1">\
