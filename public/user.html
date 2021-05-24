@@ -50,6 +50,7 @@
             >
               <span>Menú</span>
             </h6>
+            
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
                 <a class="nav-link" href="/posts.html">
@@ -58,19 +59,21 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/newpost.html">
-                  <span data-feather="file-text"></span>
                   Añadir Tweet
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="/explore.html">
+                  Explorar
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/perfil.html">
-                  <span data-feather="file-text"></span>
-                  Mi Peril
+                  Perfil
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/login.html">
-                  <span data-feather="file-text"></span>
                   Salir
                 </a>
               </li>
@@ -98,6 +101,7 @@
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const userId = urlParams.get('id');
+        const meUser = JSON.parse(localStorage.getItem('user'));
 
         if(userId) {
           getUser(userId).then(({data: user}) => {
@@ -113,10 +117,10 @@
                 <div class="col-6 col-md-6 mt-2">\
                   <span class="h5"><strong>${user.name}</strong></span>\
                   <br>\
-                  <span class="font-weight-lighter">@${user.user_name}</span>\
+                  <span class="font-weight-lighter"><a href="/user.html?id=${user.id}">@${user.user_name}</a></span>\
                 </div>\
                 <div class="col-4 col-md-5 mt-2 text-end">\
-                  <button type="button" class="btn btn-primary" onclick="follow()">Follow</button>\
+                  ${!user.followed ? `<button type="button" id="followButton${user.id}" class="btn btn-primary" data-userid="${user.id}" >Seguir</button>` : ''}\
                 </div>\
               </div>\
               <div class="row mt-1">\
@@ -132,6 +136,23 @@
               </div>`;
 
             userElement.innerHTML = userHTML;
+
+              if(!user.followed) {
+                const followButton = document.getElementById(`followButton${user.id}`);
+                followButton.addEventListener("click", () => {
+                    const follow = {
+                      follower_id: meUser.id,
+                    };
+                    
+                    addFollow(user.id, follow).then(({data}) => {
+                      followButton.style.display = 'none';
+                      alert(`Ahora sigues a ${user.name}`);
+                    });
+                  },
+                  false
+                );
+              }
+              
             const postsElement = document.getElementById('posts');
             user.posts.forEach((post) => {
               const postHTML = `
@@ -145,9 +166,6 @@
                     <p>\
                       ${post.content}\
                     </p>\
-                  </div>\
-                  <div class="row">\
-                    <div class="col-4"><i class="bi bi-hand-thumbs-up pr-3"></i> ${post.likes}</div>\
                   </div>\
                 </div>\
               </div>`;
