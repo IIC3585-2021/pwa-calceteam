@@ -11,9 +11,7 @@ self.addEventListener('install', e => {
         './index.html',
         './login.html',
         './posts.html',
-        './post.html',
         './manifest.json',
-        '/user',
       ]);
     })
   );

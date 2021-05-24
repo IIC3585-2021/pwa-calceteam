@@ -8,7 +8,7 @@ const posts = [
 ];
 
 module.exports = {
-	all: () => [...posts],
+	all: () => [...posts].reverse(),
 	get: (postId) => posts.find(({id}) => id == postId),
 	add: (post) => {
 		posts.push({...post, id: posts.length + 1});
