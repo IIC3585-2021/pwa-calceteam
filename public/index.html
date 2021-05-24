@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PWA</title>
     <meta charset="utf-8" />
-    <meta name="description" content="PWA for web course" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#222831" />
-    <link rel="manifest" href="./manifest.json" />
-    <link href="./css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./css/dashboard.css" rel="stylesheet" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.83.1" />
+    <title>Signin Template · Bootstrap v5.0</title>
+
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.0/examples/sign-in/"
     />
 
     <script>
@@ -20,194 +22,92 @@
         navigator.serviceWorker.register("sw.js", { scope: "./" });
       }
     </script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/signin.css" rel="stylesheet" />
   </head>
-  <body>
-    <header
-      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
-    >
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"
-        >Twitter <i class="bi-twitter"></i
-      ></a>
-      <button
-        class="navbar-toggler position-absolute d-md-none collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#sidebarMenu"
-        aria-controls="sidebarMenu"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </header>
+  <body class="text-center">
+    <main class="form-signin">
+      <form>
+        <img class="mb-4" src="./images/avatar.png" />
+        <h1 class="h3 mb-3 fw-normal">Acceso</h1>
 
-    <div class="container-fluid">
-      <div class="row">
-        <nav
-          id="sidebarMenu"
-          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
-        >
-          <div class="position-sticky pt-3">
-            <h6
-              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-            >
-              <span>Menú</span>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="/posts.html"> Últimos Tweets </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/newpost.html">
-                  <span data-feather="file-text"></span>
-                  Añadir Tweet
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/perfil.html">
-                  <span data-feather="file-text"></span>
-                  Mi Perfil
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login.html">
-                  <span data-feather="file-text"></span>
-                  Salir
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <section id="posts">
-            <div class="mt-4 row">
-              <div class="col-md-1 col-2 pt-1">
-                <img
-                  src="./images/avatar.png"
-                  class="img-fluid rounded-circle"
-                  alt="twitter user's avatar"
-                />
-              </div>
-
-              <div class="col-md-11 col-10">
-                <div class="row">
-                  <span
-                    ><strong>Bitcoin News</strong>
-                    <span class="font-weight-lighter"
-                      >@twitteruser123</span
-                    ></span
-                  >
-                  <p>
-                    Elon Musk has affirmed its support for #cryptocurrency in a
-                    tweet.
-                  </p>
-                </div>
-                <div class="row">
-                  <div class="col-4" onclick="()=>console.log(event)">
-                    <i class="bi-alarm pr-3"></i> 1123
-                  </div>
-                  <div class="col-4"><i class="bi-alarm pr-3"></i> 1123</div>
-                  <div class="col-4"><i class="bi-alarm pr-3"></i> 1123</div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section id="perfil" class="mt-4">
-            <div class="row">
-              <img
-                src="./images/background.jpg"
-                class="img-fluid"
-                alt="Twitter user's background"
-              />
-            </div>
-            <div class="row mt-2">
-              <div class="col-2 col-md-1 pt-1">
-                <img
-                  src="/images/avatar.png"
-                  class="img-fluid rounded-circle"
-                  alt="Twitter user's avatar"
-                />
-              </div>
-              <div class="col-6 col-md-6 mt-2">
-                <span><strong>Twitter User</strong></span>
-                <br />
-                <span class="font-weight-lighter">@twitteruser123</span>
-              </div>
-              <div class="col-4 col-md-5 mt-2 text-end">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="follow()"
-                >
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col">
-                De pequeño quemaba cosas, ahora ya no. AuronPlay@gmail.com ||
-                http://twitch.com/AuronPlay
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col">
-                <strong>100M</strong> Following <strong>100M</strong> Followers
-              </div>
-            </div>
-          </section>
-          <section id="newpost">
-            <div class="mt-4 row">
-              <div class="col-md-1 col-2 pt-1">
-                <img
-                  src="./images/avatar.png"
-                  class="img-fluid rounded-circle"
-                  alt="twitter user's avatar"
-                />
-              </div>
-
-              <div class="col-md-11 col-10">
-                <div class="row">
-                  <form action="">
-                    <textarea
-                      class="form-control"
-                      placeholder="What's happening?"
-                      style="min-width: 100%"
-                    ></textarea>
-                  </form>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col">
-                    <div class="text-end">
-                      <button type="button" class="btn btn-primary">
-                        Tuitear
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
-    </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="user_name"
+            placeholder="chalo"
+          />
+          <label for="user_name">Usuario</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+          <label for="password">Contraseña</label>
+        </div>
+        <div class="checkbox mb-3">
+          <a href="/signup.html">Registrarse</a>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" id="loginButton" type="button">
+          Entrar
+        </button>
+      </form>
+    </main>
 
     <script src="./js/axios.min.js"></script>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/dashboard.js"></script>
+    <script src="./js/repository.js"></script>
 
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        const sendFormButton = document.getElementById("loginButton");
+        sendFormButton.addEventListener("click", () => {
+            const credentials = {
+              user_name: document.getElementById("user_name").value,
+              password: document.getElementById("password").value,
+            };
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+            login(credentials).then(({data}) => {
+              if(data.error) {
+                alert(data.error);
+              } else {
+                localStorage.setItem('user', JSON.stringify(data));
+                window.location.href = '/posts.html';
+              }
+            });
+          },
+          false
+        );
+      }, false);
+      
+      (function () {
+        "use strict";
 
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-analytics.js"></script>
-
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-messaging.js"></script>
-
-    <script src="./get_token.js" ></script>
+        
+      })();
+    </script>
   </body>
 </html>
