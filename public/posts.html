@@ -48,34 +48,33 @@
             <h6
               class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
             >
-              <span>Saved reports</span>
-              <a class="link-secondary" href="#" aria-label="Add a new report">
-                <span data-feather="plus-circle"></span>
-              </a>
+              <span>Menú</span>
             </h6>
+            
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
+                <a class="nav-link" href="/posts.html">
+                  Últimos Tweets
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
+                <a class="nav-link" href="/newpost.html">
+                  Añadir Tweet
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
+                <a class="nav-link" href="/explore.html">
+                  Explorar
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
+                <a class="nav-link" href="/perfil.html">
+                  Perfil
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login.html">
+                  Salir
                 </a>
               </li>
             </ul>
@@ -97,7 +96,7 @@
       
       (function () {
         'use strict'
-        
+
         getPosts().then(({data}) => {
           const postsElement = document.getElementById('posts');
           data.forEach((post) => {
@@ -110,14 +109,11 @@
                 <div class="row">\
                   <span><strong>${post.user.name}</strong> <span class="font-weight-lighter">@${post.user.user_name}</span></span>\
                   <p>\
-                    ${post.content}.\
+                    ${post.content}\
                   </p>\
                 </div>\
-                <div class="row">\
-                  <div class="col-4"><i class="bi-alarm pr-3"></i> ${post.likes}</div>\
-                </div>\
               </div>\
-            </div>`
+            </div>`;
 
             postsElement.innerHTML += postHTML;
           });

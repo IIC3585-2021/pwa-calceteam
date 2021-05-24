@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PWA</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="PWA for web course" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#222831" />
+    <link rel="manifest" href="./manifest.json" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <script>
+      // Registering our Service worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js", { scope: "./" });
+      }
+    </script>
+  </head>
+  <body>
+    <header
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"
+        >Twitter <i class="bi-twitter"></i></a
+      >
+      <button
+        class="navbar-toggler position-absolute d-md-none collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+        >
+          <div class="position-sticky pt-3">
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+            >
+              <span>Menú</span>
+            </h6>
+            
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="/posts.html">
+                  Últimos Tweets
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/newpost.html">
+                  Añadir Tweet
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/explore.html">
+                  Explorar
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/perfil.html">
+                  Perfil
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login.html">
+                  Salir
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <section id="perfil"></section>
+          <p class="mt-4 h5"><strong>Últimos Tweets</strong></p>
+          <section id="posts"></section>
+        </main>
+      </div>
+    </div>
+
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/repository.js"></script>
+
+    <script type="text/javascript">
+      
+      (function () {
+        'use strict'
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const userId = urlParams.get('id');
+        const meUser = JSON.parse(localStorage.getItem('user'));
+
+        if(userId) {
+          getUser(userId).then(({data: user}) => {
+            const userElement = document.getElementById('perfil');
+            const userHTML = `
+              <div class="row">
+                <img src="./images/background.jpg" class="img-fluid" alt="Twitter user's background">\
+              </div>\
+              <div class="row mt-2">\
+                <div class="col-2 col-md-1 pt-1">\
+                  <img src="/images/avatar.png" class="img-fluid rounded-circle">\
+                </div>\
+                <div class="col-6 col-md-6 mt-2">\
+                  <span class="h5"><strong>${user.name}</strong></span>\
+                  <br>\
+                  <span class="font-weight-lighter"><a href="/user.html?id=${user.id}">@${user.user_name}</a></span>\
+                </div>\
+                <div class="col-4 col-md-5 mt-2 text-end">\
+                  ${!user.followed ? `<button type="button" id="followButton${user.id}" class="btn btn-primary" data-userid="${user.id}" >Seguir</button>` : ''}\
+                </div>\
+              </div>\
+              <div class="row mt-1">\
+                <div class="col">\
+                  ${user.aboutMe}\
+                </div>\
+              </div>\
+              <div class="row mt-2">\
+                <div class="col">\
+                  <strong>${user.followers}</strong> Followers\
+                  <strong>${user.following}</strong> Following\
+                </div>\
+              </div>`;
+
+            userElement.innerHTML = userHTML;
+
+              if(!user.followed) {
+                const followButton = document.getElementById(`followButton${user.id}`);
+                followButton.addEventListener("click", () => {
+                    const follow = {
+                      follower_id: meUser.id,
+                    };
+                    
+                    addFollow(user.id, follow).then(({data}) => {
+                      followButton.style.display = 'none';
+                      alert(`Ahora sigues a ${user.name}`);
+                    });
+                  },
+                  false
+                );
+              }
+              
+            const postsElement = document.getElementById('posts');
+            user.posts.forEach((post) => {
+              const postHTML = `
+              <div id="port_${post.id}" class="mt-3 row">\
+                <div class="col-md-1 col-2 pt-1">\
+                  <img src="./images/avatar.png" class="img-fluid rounded-circle" alt="user avatar">\
+                </div>\
+                <div class="col-md-11 col-10">\
+                  <div class="row">\
+                    <span><strong>${post.user.name}</strong> <span class="font-weight-lighter">@${post.user.user_name}</span></span>\
+                    <p>\
+                      ${post.content}\
+                    </p>\
+                  </div>\
+                </div>\
+              </div>`;
+
+              postsElement.innerHTML += postHTML;
+            });
+          });
+        }
+      })();
+
+    </script>
+
+  </body>
+</html>

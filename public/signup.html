@@ -49,11 +49,12 @@
     <main class="form-signin">
       <form>
         <img class="mb-4" src="./images/avatar.png" />
-        <h1 class="h3 mb-3 fw-normal">Acceso</h1>
+        <h1 class="h3 mb-3 fw-normal">Registro</h1>
 
         <div class="form-floating">
           <input
             type="text"
+            id="user_name"
             class="form-control"
             id="user_name"
             placeholder="chalo"
@@ -62,7 +63,28 @@
         </div>
         <div class="form-floating">
           <input
+            type="text"
+            id="name"
+            class="form-control"
+            id="name"
+            placeholder="Gonzalo"
+          />
+          <label for="name">Nombre</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            id="aboutMe"
+            class="form-control"
+            id="aboutMe"
+            placeholder="A los conejos les gusta el pan, pero no hay que darles mucho"
+          />
+          <label for="aboutMe">Sobre mi</label>
+        </div>
+        <div class="form-floating">
+          <input
             type="password"
+            id="password"
             class="form-control"
             id="password"
             placeholder="Password"
@@ -70,10 +92,14 @@
           <label for="password">Contraseña</label>
         </div>
         <div class="checkbox mb-3">
-          <a href="/signup.html">Registrarse</a>
+          <a href="/login.html">Acceder</a>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" id="loginButton" type="button">
-          Entrar
+        <button
+          class="w-100 btn btn-lg btn-primary"
+          id="signupButton"
+          type="button"
+        >
+          Registrarse
         </button>
       </form>
     </main>
@@ -85,14 +111,16 @@
       (function () {
         "use strict";
 
-        const sendFormButton = document.getElementById("loginButton");
+        const sendFormButton = document.getElementById("signupButton");
         sendFormButton.addEventListener("click", () => {
-            const credentials = {
+            const user = {
+              name: document.getElementById("name").value,
               user_name: document.getElementById("user_name").value,
               password: document.getElementById("password").value,
+              aboutMe: document.getElementById("aboutMe").value
             };
 
-            login(credentials).then(({data}) => {
+            register(user).then(({data}) => {
               if(data.error) {
                 alert(data.error);
               } else {

@@ -21,5 +21,5 @@ module.exports = {
 			posts[postIndex] = { ...posts[postIndex], ...post };
 		}
 	},
-	getByUserId: (userId) => posts.filter(({user_id}) == userId),
+	getByUserId: (userId) => posts.filter(({user_id}) => user_id == userId),
 };

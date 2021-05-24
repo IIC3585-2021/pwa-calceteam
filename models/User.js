@@ -4,7 +4,22 @@ const users = [
 		id: 1,
 		name: 'Gonzalo',
 		user_name: 'chalo',
-		password: 'jakeado123',
+		password: 'asd123',
+		aboutMe: 'A los conejos les gusta el pan, pero no hay que darles mucho',
+	},
+	{
+		id: 2,
+		name: 'Jacinto',
+		user_name: 'jacin3',
+		password: 'asd123',
+		aboutMe: 'No te pueden hacer bullyng si te lo hacen primero',
+	},
+	{
+		id: 3,
+		name: 'Jacinsssto',
+		user_name: 'jaciwwwn3',
+		password: 'asd123',
+		aboutMe: 'No te pueden hacer bullyng si te lo hacen primero',
 	},
 ];
 
