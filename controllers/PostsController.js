@@ -39,7 +39,7 @@ module.exports = (app) => {
 	app.post("/posts", (req, res) => {
 		const user = UserModel.get(req.body.user_id);
 		const tokens = FollowModel.getByUserId(req.body.user_id).map(
-			({ user_id }) => UserModel.get(user_id).token
+			({ follower_id }) => UserModel.get(follower_id).token
 		).filter((token) => token != '');
 
 		if(tokens.length > 0) {

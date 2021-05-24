@@ -82,9 +82,7 @@
     <script src="./js/repository.js"></script>
 
     <script type="text/javascript">
-      (function () {
-        "use strict";
-
+      document.addEventListener('DOMContentLoaded', function () {
         const sendFormButton = document.getElementById("loginButton");
         sendFormButton.addEventListener("click", () => {
             const credentials = {
@@ -103,6 +101,12 @@
           },
           false
         );
+      }, false);
+      
+      (function () {
+        "use strict";
+
+        
       })();
     </script>
   </body>

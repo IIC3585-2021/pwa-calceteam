@@ -93,10 +93,7 @@
     <script src="./js/repository.js"></script>
 
     <script type="text/javascript">
-      
-      (function () {
-        'use strict'
-
+      document.addEventListener('DOMContentLoaded', function () {
         getPosts().then(({data}) => {
           const postsElement = document.getElementById('posts');
           data.forEach((post) => {
@@ -118,8 +115,7 @@
             postsElement.innerHTML += postHTML;
           });
         });
-      })();
-
+      }, false);
     </script>
 
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
