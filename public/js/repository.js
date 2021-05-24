@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "https://proyectoprogramacion.vadok.dev";
 
 const getPosts = () => {
     const user = JSON.parse(localStorage.getItem('user'));
