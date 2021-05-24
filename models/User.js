@@ -5,6 +5,7 @@ const users = [
 		name: 'Gonzalo',
 		user_name: 'chalo',
 		password: 'jakeado123',
+		aboutMe: 'el otro día fui al doctor',
 	},
 ];
 
