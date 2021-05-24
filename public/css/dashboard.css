@@ -2,6 +2,10 @@ body {
   font-size: .875rem;
 }
 
+p {
+  word-wrap: break-word;
+}
+
 .feather {
   width: 16px;
   height: 16px;
