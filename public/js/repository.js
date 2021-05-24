@@ -21,6 +21,10 @@ const getUsers = () => {
 	});
 };
 
+const updateUser = (userId, user) => {
+	return axios.post(`${SERVER_URL}/users/${userId}`, user);
+}
+
 const addPost = (post) => {
 	return axios.post(`${SERVER_URL}/posts`, post);
 };

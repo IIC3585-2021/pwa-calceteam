@@ -117,7 +117,8 @@
               name: document.getElementById("name").value,
               user_name: document.getElementById("user_name").value,
               password: document.getElementById("password").value,
-              aboutMe: document.getElementById("aboutMe").value
+              aboutMe: document.getElementById("aboutMe").value,
+              token: '',
             };
 
             register(user).then(({data}) => {

@@ -6,20 +6,23 @@ const users = [
 		user_name: 'chalo',
 		password: 'asd123',
 		aboutMe: 'A los conejos les gusta el pan, pero no hay que darles mucho',
+		token: '',
 	},
 	{
 		id: 2,
 		name: 'Jacinto',
-		user_name: 'jacin3',
+		user_name: 'user2',
 		password: 'asd123',
-		aboutMe: 'No te pueden hacer bullyng si te lo hacen primero',
+		aboutMe: 'Chorrocientos pituto ubicatex huevo duro bolsero cachureo el hoyo del queque en cana huevón el año del loly hacerla corta impeque de miedo quilterry la raja longi ñecla. Hilo curado rayuela carrete quina guagua lorea piola ni ahí.',
+		token: '',
 	},
 	{
 		id: 3,
 		name: 'Jacinsssto',
-		user_name: 'jaciwwwn3',
+		user_name: 'user3',
 		password: 'asd123',
-		aboutMe: 'No te pueden hacer bullyng si te lo hacen primero',
+		aboutMe: 'Lorem ipsum dolor sit cuchuflí barquillo bacán jote gamba listeilor po cahuín, luca melón con vino pichanga coscacho ni ahí peinar la muñeca chuchada al chancho achoclonar.',
+		token: '',
 	},
 ];
 
@@ -32,7 +35,7 @@ module.exports = {
 		return users[users.length - 1];
 	},
 	delete: (userId) => users.splice(users.findIndex(({id}) => id == userId), 1),
-	update: (user) => {
+	update: (userId, user) => {
 		userIndex = users.findIndex(({id}) => id == userId);
 		if (userIndex != -1) {
 			users[userIndex] = { ...users[userIndex], ...user };
