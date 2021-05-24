@@ -38,6 +38,10 @@ module.exports = (app) => {
 		return res.send(userWithPosts);
 	});
 
+	app.post('/users/:id', (req, res) => {
+		return res.send(UserModel.update(req.params.id, req.body));
+	});
+
 	app.post('/login', (req, res) => {
 		const user = UserModel.getByUsername(req.body.user_name);
 		if(user && user.password == req.body.password)
@@ -47,7 +51,13 @@ module.exports = (app) => {
 	});
 
 	app.post('/users', (req, res) => {
-		return res.send(UserModel.add(req.body));
+		const user = UserModel.add(req.body);
+		const follow = {
+			user_id: user.id,
+			follower_id: user.id,
+		};
+		FollowModel.add(follow);
+		return res.send(user);
 	});
 
 	app.post('/users/:id/follow', (req, res) => {
