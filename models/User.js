@@ -6,6 +6,7 @@ const users = [
 		user_name: 'chalo',
 		password: 'asd123',
 		aboutMe: 'A los conejos les gusta el pan, pero no hay que darles mucho',
+		token: '',
 	},
 	{
 		id: 2,
@@ -13,6 +14,7 @@ const users = [
 		user_name: 'jacin3',
 		password: 'asd123',
 		aboutMe: 'No te pueden hacer bullyng si te lo hacen primero',
+		token: '',
 	},
 	{
 		id: 3,
@@ -20,6 +22,7 @@ const users = [
 		user_name: 'jaciwwwn3',
 		password: 'asd123',
 		aboutMe: 'No te pueden hacer bullyng si te lo hacen primero',
+		token: '',
 	},
 ];
 

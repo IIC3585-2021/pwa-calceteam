@@ -8,9 +8,19 @@ self.addEventListener('install', e => {
       // but you can add more such as style.css as your app grows
       return cache.addAll([
         './',
+        './css/bootstrap.min.css',
+        './css/bootstrap.min.css.map',
+        './css/bootstrap.rtl.min.css',
+        './css/bootstrap.rtl.min.css.map',
+        './css/dashboard.css',
+        './css/signin.css',
+        './js/dashboard.js',
+        './js/repository.js',
+        './images/avatar.png',
         './index.html',
         './login.html',
         './posts.html',
+        './perfil.html',
         './manifest.json',
       ]);
     })
@@ -20,13 +30,15 @@ self.addEventListener('install', e => {
 // Our service worker will intercept all fetch requests
 // and check if we have cached the file
 // if so it will serve the cached file
-self.addEventListener('fetch', event => {
-  console.log("AAAAA");
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.open(cacheName)
-      .then(cache => cache.match(event.request, { ignoreSearch: true }))
-      .then(response => {
-        return response || fetch(event.request);
-      })
+    caches.open(cacheName).then(function(cache) {
+      return cache.match(event.request).then(function (response) {
+        return response || fetch(event.request).then(function(response) {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      });
+    })
   );
 });

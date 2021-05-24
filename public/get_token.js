@@ -17,6 +17,12 @@ messaging.getToken(messaging, { vapidKey: 'BIFcySoRe2NzzdFDdH79vUjd65zsg_CIPeuIP
     // Send the token to your server and update the UI if necessary
     // ...
     console.log('Registration token available.', currentToken);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user?.token.length === 0) {
+      if (currentToken !== user.token) {
+        console.log('send token to server');
+      }
+    }
   } else {
     // Show permission request UI
     console.log('No registration token available. Request permission to generate one.');
